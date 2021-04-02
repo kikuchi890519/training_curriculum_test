@@ -8,14 +8,28 @@ class CalendarsController < ApplicationController
 
   # 予定の保存
   def create
+    #binding.pry
     Plan.create(plan_params)
     redirect_to action: :index
   end
 
   private
 
+  #params
+  #{
+    #"utf8"=>"✓", 
+    #"authenticity_token"=>"token", 
+    #"plan"=> {
+      #"date"=>"2021-04-06",
+      #"plan"=>"バドミントン"
+    #}, 
+    #"commit"=>"保存", 
+    #"controller"=>"calendars", 
+    #"action"=>"create"
+  #}
+
   def plan_params
-    params.require(:calendars).permit(:date, :plan)
+    params.require(:plan).permit(:date, :plan)
   end
 
   def get_week

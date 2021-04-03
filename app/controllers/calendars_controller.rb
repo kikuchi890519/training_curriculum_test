@@ -8,25 +8,11 @@ class CalendarsController < ApplicationController
 
   # 予定の保存
   def create
-    #binding.pry
     Plan.create(plan_params)
     redirect_to action: :index
   end
 
   private
-
-  #params
-  #{
-    #"utf8"=>"✓", 
-    #"authenticity_token"=>"token", 
-    #"plan"=> {
-      #"date"=>"2021-04-06",
-      #"plan"=>"バドミントン"
-    #}, 
-    #"commit"=>"保存", 
-    #"controller"=>"calendars", 
-    #"action"=>"create"
-  #}
 
   def plan_params
     params.require(:plan).permit(:date, :plan)
@@ -55,7 +41,7 @@ class CalendarsController < ApplicationController
         wday_num = wday_num -7
       end
 
-      days = { :month => (@todays_date + x).month, :date => (@todays_date + x).day, :plans => today_plans, wday => wdays[wday_num]}
+      days = { month: (@todays_date + x).month, date: (@todays_date + x).day, plans: today_plans, wday: wdays[wday_num]}
       @week_days.push(days)
     end
 
